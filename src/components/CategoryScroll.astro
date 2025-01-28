@@ -1,0 +1,33 @@
+---
+import BlogCard from './BlogCard.astro';
+
+interface Props {
+  category: string;
+  posts: Array<{
+    title: string;
+    date: string;
+    slug: string;
+  }>;
+}
+
+const { category, posts } = Astro.props;
+---
+
+<section class="py-6">
+  <div class="px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center gap-4 mb-4">
+      <h2 class="text-sm font-medium text-primary/70">{category}</h2>
+      <div class="h-px flex-grow bg-primary/5"></div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {posts.map(post => (
+        <BlogCard 
+          title={post.title} 
+          date={post.date}
+          slug={post.slug}
+        />
+      ))}
+    </div>
+  </div>
+</section>
